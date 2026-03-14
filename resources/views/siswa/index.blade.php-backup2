@@ -1,0 +1,25 @@
+@extends('template')
+
+@section('main')
+<div id="siswa">
+    <a href="{{ url('siswa/create') }}" class="btn btn-primary">Tambah Siswa</a>
+    <h2>Siswa</h2>
+
+     @if(!empty($siswa))
+        <ul>
+            @foreach($siswa as $anak)
+                <li>{{ $anak }}</li>
+            @endforeach
+        </ul>
+    @else
+        <p>Tidak adan data siswa.</p>
+    @endif
+    
+</div>
+@stop
+
+@section('footer')
+    <div id="footer">
+        <p>&copy; 2019 siswaku.app</p>
+    </div>
+@stop
