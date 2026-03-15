@@ -223,3 +223,18 @@ Route::get('sampledata', function(){
     ]);
     return 'Sample data telah dimasukkan!';
 });
+
+/**
+ * Latihan Collection
+ */
+Route::get('koleksi','SiswaController@koleksi');
+Route::get('koleksi1','SiswaController@koleksi1');
+Route::get('koleksi2','SiswaController@koleksi2');
+Route::get('koleksi3','SiswaController@koleksi3');
+Route::get('koleksi4','SiswaController@koleksi4');
+Route::get('koleksi5','SiswaController@koleksi5');
+Route::get('koleksi6','SiswaController@koleksi6');
+Route::get('koleksi7','SiswaController@koleksi7');
+Route::get('koleksi8','SiswaController@koleksi8');
+Route::get('koleksi9','SiswaController@koleksi9');
+Route::get('koleksi10','SiswaController@koleksi10');

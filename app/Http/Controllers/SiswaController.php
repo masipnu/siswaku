@@ -111,4 +111,98 @@ class SiswaController extends Controller
         return redirect('siswa');
     }
 
+    /**
+     * Latihan Collection
+     */
+
+    // Merubah array menjadi collection
+    public function koleksi(){
+        $orang = [
+            'rasmus ledorf',
+            'taylor otwell',
+            'brendan eich',
+            'john resig'
+        ];
+
+        $collection = collect($orang)->map(function($nama){
+            return ucwords($nama);
+        });
+
+        return $collection;
+    }
+
+    // Menampilkan semua data
+    public function koleksi1(){
+        $koleksi = Siswa::all();
+        return $koleksi;
+    }
+
+    // Menampilkan data terakhir
+    public function koleksi2(){
+        $collection = Siswa::all()->last();
+        return $collection;
+    }
+
+    // Mendapatkan jumlah koleksi
+    public function koleksi3(){
+        $koleksi = Siswa::all();
+        $jumlah = $koleksi->count();
+        return 'Jumlah siswa = ' . $jumlah;
+    }
+
+    // Mendapatkan jumlah koleksi - cara 2 (2 kali query)
+    public function koleksi4(){
+        $koleksi = Siswa::all();
+        $jumlah = Siswa::count();
+
+        return $jumlah;
+    }
+
+    // Mendapatkan beberapa data koleksi
+    public function koleksi5(){
+        $koleksi = Siswa::all()->take(3);
+        return $koleksi;
+    }
+
+    // Mendapatkan salah satu atribut dari semua koleksi
+    public function koleksi6(){
+        $koleksi = Siswa::all()->pluck('nama_siswa');
+        return $koleksi;
+    }
+
+    // Melakukan filter
+    public function koleksi7(){
+        $koleksi = Siswa::all();
+        $filter = $koleksi->where('nama_siswa','Joko Santoso');
+        return $filter;
+    }
+
+    // Mendapatkan data dengan filter beberapa nilai fix
+    public function koleksi8(){
+        $koleksi = Siswa::all();
+        $filter = $koleksi->whereIn('nisn',['1003','1005','1013']);
+        return $filter;
+    }
+
+    // Merubah data menjadi array
+    public function koleksi9(){
+        $koleksi = Siswa::select('nisn','nama_siswa')->take(3)->get();
+            $data = $koleksi->toArray();
+            foreach($data as $siswa){
+                echo $siswa['nisn'].' - '.$siswa['nama_siswa'].'<br>';
+            }
+    }
+
+    // Merubah data menjadi JSON
+    public function koleksi10(){
+        $data = [
+            ['nisn'=>'1001', 'nama_siswa'=>'Agus Yulianto'],
+            ['nisn'=>'1002', 'nama_siswa'=>'Agustina Anggraeni'],
+            ['nisn'=>'1003', 'nama_siswa'=>'Bayu Firmansyah'],
+        ];
+
+        $koleksi = collect($data);
+        $koleksi->toJson();
+        return $koleksi;
+    }
 }
