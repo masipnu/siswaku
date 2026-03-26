@@ -17,6 +17,10 @@ class Siswa extends Model
         'jenis_kelamin'
     ];
 
+    protected $dates = [
+        'tanggal_lahir'
+    ];
+
     // Membuat accessor dari tabel siswa agar nama menjadi sentence-case
     public function getNamaSiswaAttribute($nama_siswa){
         return ucwords($nama_siswa);

@@ -238,3 +238,9 @@ Route::get('koleksi7','SiswaController@koleksi7');
 Route::get('koleksi8','SiswaController@koleksi8');
 Route::get('koleksi9','SiswaController@koleksi9');
 Route::get('koleksi10','SiswaController@koleksi10');
+
+/**
+ * Route untuk date mutator
+ */
+Route::get('date-mutator1','SiswaController@dateMutator1');
+Route::get('date-mutator2','SiswaController@dateMutator2');

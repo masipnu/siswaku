@@ -205,4 +205,28 @@ class SiswaController extends Controller
         $koleksi->toJson();
         return $koleksi;
     }
+    
+    /**
+     * Date Mutator
+     * Manipulasi tanggal dengan carbon instance
+     */
+    
+    // Date Mutator1
+    public function dateMutator1(){
+        $siswa = Siswa::findOrFail(1);
+        // test carbon instance
+        // dd($siswa->created_at);
+        return "Umur {$siswa->nama_siswa} adalah {$siswa->tanggal_lahir->age} tahun.";
+    }
+
+    // Date mutator2
+    public function dateMutator2(){
+        $siswa = Siswa::findOrFail(1);
+        $nama = $siswa->nama_siswa;
+        $tanggal = $siswa->tanggal_lahir->format('d-m-Y');
+        $ultah = $siswa->tanggal_lahir->addYears(30)->format('d-m-Y');
+        
+        return "Siswa {$nama} lahir pada tanggal {$tanggal}.<br>
+        Ulang tahun ke-30 akan jatuh pada tanggal {$ultah}.";
+    }
 }
