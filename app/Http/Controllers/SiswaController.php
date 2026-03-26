@@ -29,7 +29,7 @@ class SiswaController extends Controller
     public function index(){
         // $halaman = 'siswa';
         // $siswa_list = Siswa::all()->sortBy('nisn');
-        $siswa_list = Siswa::orderBy('nama_siswa','asc')->paginate(5);
+        $siswa_list = Siswa::orderBy('nisn','asc')->paginate(5);
         $jumlah_siswa = Siswa::all()->count();
         // return view('siswa.index', compact('halaman','siswa_list','jumlah_siswa'));
         return view('siswa.index', compact('siswa_list','jumlah_siswa'));

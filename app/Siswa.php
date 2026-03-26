@@ -16,4 +16,15 @@ class Siswa extends Model
         'tanggal_lahir',
         'jenis_kelamin'
     ];
+
+    // Membuat accessor dari tabel siswa agar nama menjadi sentence-case
+    public function getNamaSiswaAttribute($nama_siswa){
+        return ucwords($nama_siswa);
+    }
+
+    // membuat mutator agar menyimpan nama siswa dalam bentuk lower-case
+    public function setNamaSiswaAttribute($nama_siswa){
+        // return strtolower($nama_siswa);
+        $this->attributes['nama_siswa'] = strtolower($nama_siswa);
+    }
 }
