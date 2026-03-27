@@ -1,12 +1,20 @@
-<div class="form-group">
+@if ($errors->any())
+    <div class="form-group {{ $errors->has('nisn') ? 'has-error' : 'has-success' }} ">
+@else
+    <div class="form-group">
+@endif
     {!! Form::label('nisn','NISN', ['class' => 'control-label']) !!}
-    {!! Form::text('nisn', null, ['class' => 'form-control','autofocus','required']) !!}
+    {!! Form::text('nisn', null, ['class' => 'form-control']) !!}
         @if ($errors->has('nisn'))
             <span class="help-block">{{ $errors->first('nisn') }}</span>
         @endif
 </div>
 
-<div class="form-group">
+@if ($errors->any())
+    <div class="form-group {{ $errors->has('nama_siswa') ? 'has-error' : 'has-success' }} ">
+@else
+    <div class="form-group">
+@endif
     {!! Form::label('nama_siswa','Nama', ['class' => 'control-label']) !!}
     {!! Form::text('nama_siswa', null, ['class' => 'form-control']) !!}
         @if ($errors->has('nama_siswa'))
@@ -14,7 +22,11 @@
         @endif
 </div>
 
-<div class="form-group">
+@if ($errors->any())
+    <div class="form-group {{ $errors->has('tanggal_lahir') ? 'has-error' : 'has-success' }} ">
+@else
+    <div class="form-group">
+@endif
     {!! Form::label('tanggal_lahir', 'Tgl. Lahir', ['class' => 'control-label']) !!}
     {!! Form::date('tanggal_lahir',
     !empty($siswa) ? $siswa->tanggal_lahir->format('Y-m-d') : null,
@@ -24,7 +36,11 @@
         @endif
 </div>
 
-<div class="form-group">
+@if ($errors->any())
+    <div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : 'has-success' }} ">
+@else
+    <div class="form-group">
+@endif
     {!! Form::label('jenis_kelamin', 'Jenis Kelamin', ['class' => 'control-label']) !!}
     <div class="radio">
         <label>
