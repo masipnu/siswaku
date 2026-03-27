@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Siswa;
+// Menambah form validator
+use Validator;
 
 class SiswaController extends Controller
 {
@@ -29,7 +31,7 @@ class SiswaController extends Controller
     public function index(){
         // $halaman = 'siswa';
         // $siswa_list = Siswa::all()->sortBy('nisn');
-        $siswa_list = Siswa::orderBy('nisn','asc')->paginate(5);
+        $siswa_list = Siswa::orderBy('nisn','asc')->paginate(10);
         $jumlah_siswa = Siswa::all()->count();
         // return view('siswa.index', compact('halaman','siswa_list','jumlah_siswa'));
         return view('siswa.index', compact('siswa_list','jumlah_siswa'));
@@ -80,9 +82,32 @@ class SiswaController extends Controller
          * Membuat data dari form menjadi input array
          * Metode bagus jika data form banyak sekali
          */
+        // $input = $request->all();
+        // Siswa::create($input);
+        // return redirect('siswa');
+
+        /**
+         * Perubahan setelah ditambahkan form validator
+         */
         $input = $request->all();
+        $validator = Validator::make($input,[
+            'nisn'          =>'required|string|size:4|unique:siswa,nisn',
+            'nama_siswa'    =>'required|string|max:30',
+            'tanggal_lahir' =>'required|date',
+            'jenis_kelamin' =>'required|in:L,P',
+        ]);
+
+        if($validator->fails()){
+            return redirect('siswa/create')
+            ->withInput()
+            ->withErrors($validator);
+        }
+
         Siswa::create($input);
+
         return redirect('siswa');
+
+
     }
 
     /**
